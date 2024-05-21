@@ -13,12 +13,13 @@ class SendTestEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $details;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -27,7 +28,7 @@ class SendTestEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Test Email',
+            subject: 'Avisar notificacion',
         );
     }
 
@@ -37,7 +38,7 @@ class SendTestEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.test',
         );
     }
 
